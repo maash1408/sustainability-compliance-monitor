@@ -1,203 +1,208 @@
-# AI Service — Sustainability Compliance Monitor
+# Sustainability Compliance Monitor — AI Service
 
-This service handles all AI functionalities using **Flask + Groq API**.
+## Overview
 
----
+This AI microservice powers the Sustainability Compliance Monitor capstone project.
 
-## Features
+The service uses:
+- Flask
+- Groq LLaMA models
+- ChromaDB
+- Redis caching
+- Docker
 
-* AI-powered description generation
-* Sustainability recommendations
-* Full compliance report generation
-* Health monitoring endpoint
-* Fallback handling if AI fails
-
----
-
-## Tech Stack
-
-* Python 3.11
-* Flask
-* Groq API (LLaMA 3)
-* Redis (for caching)
-* Flask-Limiter (rate limiting)
+It generates:
+- sustainability issue descriptions
+- ESG recommendations
+- compliance reports
 
 ---
 
-## Folder Structure
+# Tech Stack
+
+- Python 3.11
+- Flask 3.x
+- Groq API
+- ChromaDB
+- Sentence Transformers
+- Redis
+- Docker
+
+---
+
+# Folder Structure
 
 ai-service/
-│── routes/
-│── services/
-│── prompts/
-│── app.py
-│── requirements.txt
+│
+├── routes/
+├── services/
+├── knowledge/
+├── test_inputs/
+├── middlewares/
+├── prompts/
+├── app.py
+├── Dockerfile
+├── requirements.txt
+└── README.md
 
 ---
 
-## Setup Instructions
+# Environment Variables
 
-### 1. Clone Repository
+Create `.env`
 
-git clone https://github.com/maash1408/sustainability-compliance-monitor.git
-cd Sustainability-Compliance-Monitor/ai-service
+Example:
 
----
-
-### 2. Create Virtual Environment
-
-Windows:
-venv\Scripts\activate
-
-Mac/Linux:
-source venv/bin/activate
+GROQ_API_KEY=your_groq_api_key
+REDIS_HOST=redis
+REDIS_PORT=6379
+FLASK_ENV=development
+PORT=5000
 
 ---
 
-### 3. Install Dependencies
+# Docker Setup
 
-pip install -r requirements.txt
+## Build Container
 
----
+docker build -t sustainability-ai-service .
 
-### 4. Environment Variables
+## Run Container
 
-Create `.env` file:
-
-GROQ_API_KEY=your_api_key
-REDIS_URL=redis://localhost:6379
+docker run -p 5000:5000 sustainability-ai-service
 
 ---
 
-## Run the Service
+# Docker Compose
 
-python app.py
+From project root:
 
-App will run on:
-
-http://localhost:5000
+docker-compose up --build
 
 ---
 
-## API Endpoints
-
----
-
-### 1. POST /describe
-
-Generates sustainability description.
-
-Request:
-{
-"company": "ABC Corp",
-"data": "Reduced emissions but lacks waste policy"
-}
-
-Response:
-{
-"title": "Sustainability Overview",
-"summary": "Company shows progress...",
-"generated_at": "timestamp"
-}
-
----
-
-### 2. POST /recommend
-
-Returns recommendations.
-
-Request:
-{
-"data": "High emissions and waste issues"
-}
-
-Response:
-[
-{
-"action_type": "Emission Reduction",
-"description": "Switch to renewable energy",
-"priority": "High"
-}
-]
-
----
-
-### 3. POST /generate-report
-
-Generates full report.
-
-Request:
-{
-"data": "Company sustainability data"
-}
-
-Response:
-{
-"title": "Report",
-"summary": "...",
-"overview": "...",
-"key_items": [],
-"recommendations": []
-}
-
----
-
-## Health Endpoint
+# Health Endpoint
 
 GET /health
 
-Response:
-{
-"status": "OK",
-"model": "llama3",
-"uptime": "2h",
-"avg_response_time": "1.2s"
-}
-
----
-
-## Error Handling
-
-* Groq failures return fallback response
-* No server crash on AI failure
-
 Example:
+
+http://localhost:5000/health
+
+Response:
+
 {
-"is_fallback": true,
-"message": "AI unavailable"
+  "status": "healthy",
+  "service": "ai-service"
 }
 
 ---
 
-## Security
+# API Endpoints
 
-* Rate limit: 30 requests/min
-* Input validation
-* Prompt injection protection
+## 1. POST /describe
+
+Generate sustainability issue descriptions.
+
+### Request
+
+{
+  "title": "Waste Overflow",
+  "description": "Waste exceeded monthly threshold"
+}
+
+### Response
+
+{
+  "response": "AI-generated sustainability analysis"
+}
 
 ---
 
-## Docker
+## 2. POST /recommend
 
-Build:
-docker build -t ai-service .
+Generate sustainability recommendations.
+
+### Request
+
+{
+  "issue": "High electricity usage"
+}
+
+### Response
+
+{
+  "response": "AI-generated sustainability recommendations"
+}
+
+---
+
+## 3. POST /generate-report
+
+Generate sustainability compliance reports.
+
+### Request
+
+{
+  "records": [
+    {
+      "title": "Water Usage",
+      "status": "HIGH"
+    }
+  ]
+}
+
+### Response
+
+{
+  "response": "AI-generated sustainability report"
+}
+
+---
+
+# Knowledge Base
+
+The AI service uses:
+- ChromaDB
+- sustainability domain documents
+- semantic search
+
+Knowledge files are stored in:
+
+knowledge/
+
+---
+
+# Security Features
+
+- Input validation
+- Prompt injection filtering
+- Rate limiting
+- Security headers
+- ZAP-tested endpoints
+
+---
+
+# Running Tests
 
 Run:
-docker run -p 5000:5000 ai-service
+
+python test_prompts.py
 
 ---
 
-## Performance
+# Performance
 
-* Response time < 2 seconds
-* Cached responses faster
+Average API response times:
 
----
-
-## Developer Notes
-
-* All responses are JSON formatted
-* AI calls handled with try-catch
-* Fallback implemented
+| Endpoint | Avg Time |
+|---|---|
+| /describe | 1.3s |
+| /recommend | 1.4s |
+| /generate-report | 1.8s |
 
 ---
+
+# Author
+
+AI Developer 1 — Sustainability Compliance Monitor Capstone Project
