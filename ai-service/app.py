@@ -4,7 +4,6 @@ from routes.recommend import recommend_bp
 from routes.generate_report import report_bp
 from middlewares.security_headers import apply_security_headers
 
-
 from routes.security_headers import register_security_headers
 app = Flask(__name__)
 register_security_headers(app)

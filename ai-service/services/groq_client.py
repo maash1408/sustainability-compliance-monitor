@@ -11,7 +11,7 @@ load_dotenv(BASE_DIR / ".env")
 
 api_key = os.getenv("GROQ_API_KEY")
 
-print(" GROQ_API_KEY loaded:", "YES" if api_key else "NO")
+print("GROQ_API_KEY loaded:", "YES" if api_key else "NO")
 
 if not api_key:
     raise ValueError("GROQ_API_KEY not found")
@@ -19,20 +19,25 @@ if not api_key:
 client = Groq(api_key=api_key)
 
 
-def call_groq(messages, fallback_function):
+def call_groq(prompt, fallback_function=None):
+
     try:
+
         response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",   #  correct model
-            messages=messages,
+            model="llama-3.1-8b-instant",
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
             temperature=0.3,
             max_tokens=300
         )
 
         raw_output = response.choices[0].message.content
 
-        #  Try parsing JSON safely
+        # Try parsing JSON safely
         try:
             parsed_output = json.loads(raw_output)
+
         except Exception:
             parsed_output = {
                 "raw_text": raw_output
@@ -44,11 +49,22 @@ def call_groq(messages, fallback_function):
         }
 
     except Exception as e:
-        print("\n GROQ ERROR START ")
-        traceback.print_exc()
-        print(" GROQ ERROR END \n")
 
+        print("\nGROQ ERROR START")
+        traceback.print_exc()
+        print("GROQ ERROR END\n")
+
+        # Use fallback if provided
+        if fallback_function:
+            return {
+                "data": fallback_function(),
+                "is_fallback": True
+            }
+
+        # Default fallback response
         return {
-            "data": fallback_function(),
+            "data": {
+                "raw_text": "AI response temporarily unavailable."
+            },
             "is_fallback": True
         }

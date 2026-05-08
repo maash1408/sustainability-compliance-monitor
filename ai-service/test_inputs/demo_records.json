@@ -1,0 +1,122 @@
+[
+  {
+    "title": "High Water Consumption",
+    "description": "Factory exceeded water consumption limits"
+  },
+  {
+    "title": "Carbon Emissions Alert",
+    "description": "Carbon emissions increased by 18%"
+  },
+  {
+    "title": "Waste Overflow",
+    "description": "Waste storage exceeded safe capacity"
+  },
+  {
+    "title": "Plastic Waste Increase",
+    "description": "Plastic waste generation increased significantly"
+  },
+  {
+    "title": "Energy Inefficiency",
+    "description": "Manufacturing unit consumed excessive electricity"
+  },
+  {
+    "title": "Chemical Leakage",
+    "description": "Hazardous chemicals leaked into nearby drainage"
+  },
+  {
+    "title": "Air Pollution Spike",
+    "description": "Air quality index exceeded permitted threshold"
+  },
+  {
+    "title": "Water Pollution Risk",
+    "description": "Untreated wastewater released into river"
+  },
+  {
+    "title": "ESG Compliance Failure",
+    "description": "Company failed sustainability audit requirements"
+  },
+  {
+    "title": "Greenhouse Gas Increase",
+    "description": "Greenhouse gas emissions rose during production"
+  },
+  {
+    "title": "Improper Waste Disposal",
+    "description": "Industrial waste disposed without segregation"
+  },
+  {
+    "title": "Recycling Deficiency",
+    "description": "Recycling practices were not properly followed"
+  },
+  {
+    "title": "Excessive Fuel Usage",
+    "description": "Transport vehicles consumed excess diesel fuel"
+  },
+  {
+    "title": "Deforestation Concern",
+    "description": "Raw material sourcing affected forest regions"
+  },
+  {
+    "title": "Noise Pollution",
+    "description": "Machinery noise exceeded acceptable standards"
+  },
+  {
+    "title": "Renewable Energy Gap",
+    "description": "Low adoption of renewable energy sources"
+  },
+  {
+    "title": "Compliance Reporting Delay",
+    "description": "Environmental compliance reports were delayed"
+  },
+  {
+    "title": "Poor Carbon Tracking",
+    "description": "Carbon monitoring system generated inaccurate data"
+  },
+  {
+    "title": "Sustainability KPI Failure",
+    "description": "Organization missed sustainability performance targets"
+  },
+  {
+    "title": "Hazardous Waste Risk",
+    "description": "Hazardous waste handling procedures were violated"
+  },
+  {
+    "title": "Water Leakage",
+    "description": "Significant water leakage detected in facility"
+  },
+  {
+    "title": "High Electricity Usage",
+    "description": "Monthly electricity consumption increased sharply"
+  },
+  {
+    "title": "Environmental Audit Failure",
+    "description": "Facility failed environmental audit inspection"
+  },
+  {
+    "title": "Carbon Reduction Delay",
+    "description": "Carbon reduction goals were not achieved"
+  },
+  {
+    "title": "Sewage Treatment Issue",
+    "description": "Sewage treatment plant malfunctioned"
+  },
+  {
+    "title": "Waste Segregation Failure",
+    "description": "Waste segregation policies were ignored"
+  },
+  {
+    "title": "Overuse of Fossil Fuels",
+    "description": "Operations heavily relied on fossil fuels"
+  },
+  {
+    "title": "Environmental Compliance Gap",
+    "description": "Multiple sustainability violations detected"
+  },
+  {
+    "title": "Industrial Smoke Emissions",
+    "description": "Factory smoke emissions increased unexpectedly"
+  },
+  {
+    "title": "Low Sustainability Score",
+    "description": "Company sustainability rating decreased this quarter"
+  }
+]
