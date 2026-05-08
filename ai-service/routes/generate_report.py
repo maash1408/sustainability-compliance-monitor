@@ -1,31 +1,42 @@
 from flask import Blueprint, request, jsonify
-import time
+
 from services.groq_client import call_groq
-from services.fallback import fallback_report
 from config import REPORT_PROMPT
 
 report_bp = Blueprint('report', __name__)
 
-@report_bp.route("/generate-report", methods=["POST"])
+@report_bp.route('/generate-report', methods=['POST'])
 def generate_report():
-    start_time = time.time()
 
-    data = request.json
+    data = request.get_json()
 
-    if not data or "text" not in data:
-        return jsonify({"error": "Invalid input"}), 400
+    records = data.get("records", [])
 
-    messages = [
-        {"role": "system", "content": REPORT_PROMPT},
-        {"role": "user", "content": data["text"]}
-    ]
+    if not records:
+        return jsonify({
+            "error": "Invalid input"
+        }), 400
 
-    result = call_groq(messages, fallback_report)
+    formatted_records = ""
 
-    response_time = round(time.time() - start_time, 2)
+    for record in records:
+        formatted_records += (
+            f"Title: {record.get('title', '')}\n"
+            f"Status: {record.get('status', '')}\n\n"
+        )
+
+    prompt = f"""
+    {REPORT_PROMPT}
+
+    Sustainability Records:
+
+    {formatted_records}
+
+    Generate a professional sustainability compliance report.
+    """
+
+    ai_response = call_groq(prompt)
 
     return jsonify({
-        "report": result["data"],
-        "is_fallback": result["is_fallback"],
-        "response_time": response_time
+        "response": ai_response["data"]["raw_text"]
     })

@@ -46,5 +46,5 @@ def describe():
     ai_response = call_groq(prompt)
 
     return jsonify({
-        "response": ai_response
+        "response": ai_response["data"]["raw_text"]
     })

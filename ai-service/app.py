@@ -6,6 +6,7 @@ from middlewares.security_headers import apply_security_headers
 
 from routes.security_headers import register_security_headers
 app = Flask(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 register_security_headers(app)
 
 
